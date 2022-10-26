@@ -38,6 +38,7 @@ const Main = () => {
                 {!(query && searchFocus) && <ApiDataBlock />}
             </div>
             <div className={showAllTrans?'container':'container-small'}>
+
                 {
                     !(query.length !== 42 && query && searchFocus) &&
                     (

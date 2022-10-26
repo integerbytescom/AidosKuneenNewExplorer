@@ -5,7 +5,7 @@ import './TransactionsMedia.css';
 import TransactionItemMore from "./components/TransactionItemMore";
 import TransactionModal from "./components/TransactionModal/TransactionModal";
 import PaginateItemMore from "./components/PaginateItemMore/PaginateItemMore";
-import {Spinner} from "react-bootstrap";
+import {Alert} from "react-bootstrap";
 
 const Transactions = ({showAllTrans,setShowAllTrans,transAll,transAllTokens}) => {
 
@@ -34,6 +34,11 @@ const Transactions = ({showAllTrans,setShowAllTrans,transAll,transAllTokens}) =>
                 <h6 onClick={() => setActiveTrans(2)} className={activeTrans===2?'act':''} >akTOKEN Transactions</h6>
             </header>
 
+            {/*warninig alert tell you that trans.lenght = 0*/}
+            {(activeTrans===1 && !transAll.length) && <Alert variant={"success"} className={"alert-trans"}>No data ADK transactions</Alert>}
+            {(activeTrans===2 && !transAllTokens.length) && <Alert variant={"success"} className={"alert-trans"}>No data akTOKEN transactions</Alert>}
+
+
             <div className={`content ${showAllTrans?"show":""}`}>
 
                 {/*header for big table*/}
@@ -54,22 +59,18 @@ const Transactions = ({showAllTrans,setShowAllTrans,transAll,transAllTokens}) =>
 
                 {
                     activeTrans===1?
-                        Object.values(getDataPaginate(transAll)).length?
+                        Boolean(Object.values(getDataPaginate(transAll)).length) &&
                             getDataPaginate(transAll).map((elem,ids) =>(
                             showAllTrans?
                                 <TransactionItemMore key={ids} data={elem} setDataModal={setDataModal} setModalShow={setModalShow} />:
                                 <TransactionItem key={ids} data={elem} setDataModal={setDataModal} setModalShow={setModalShow} />
-                        )):<Spinner variant={'success'} animation={"border"} className={"mt-4"} />
-                        :
-                        Object.values(getDataPaginate(transAllTokens)).length?
+                        )):
+                        Boolean(Object.values(getDataPaginate(transAllTokens)).length) &&
                             getDataPaginate(transAllTokens).map((elem,ids) =>(
                                 showAllTrans?
                                     <TransactionItemMore token={true} key={ids} data={elem} setDataModal={setDataModal} setModalShow={setModalShow} />:
                                     <TransactionItem token={true} key={ids} data={elem} setDataModal={setDataModal} setModalShow={setModalShow} />
-                            )):<Spinner variant={'success'} animation={"border"} className={"mt-4"} />
-                        // <Alert variant={"success"} className={"fw-light p-2 small m-0 mt-3"}>
-                        //     No information about this transactions
-                        // </Alert>
+                            ))
                 }
 
                 <TransactionModal

@@ -5,6 +5,15 @@
     transition: .3s;
 }
 
+/*alert for trans if trans arr.lenght === 0*/
+.alert-trans{
+    width: 25%;
+    margin: 2em 3em 0;
+    padding: 1em;
+    font-size: 13px;
+    font-weight: 600;
+}
+
 /*header*/
 .Transactions header{
     display: flex;
