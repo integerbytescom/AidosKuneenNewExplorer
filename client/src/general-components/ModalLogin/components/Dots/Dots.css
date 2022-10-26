@@ -1,0 +1,26 @@
+.Dots{
+    width: 100%;
+    height: 12px;
+    display: flex;
+    justify-content: center;
+    margin: 1.5em auto .3em;
+}
+
+.Dots .dot{
+    width: 12px;
+    height: inherit;
+    margin: 0 5px;
+    border-radius: 6px;
+    background: var(--dark);
+    cursor: pointer;
+    transition: .2s;
+}
+.Dots .dot.active,
+.Dots .dot:hover{
+    width: 25px;
+    background: var(--green-04c);
+}
+.Dots .dot.active:hover{
+    width: 25px;
+    background: var(--dark);
+}

@@ -1,0 +1,22 @@
+@media screen and (max-width: 1200px){
+    .Transactions header{
+        padding: 1.3em 1em;
+    }
+    .header-show-table{
+        padding: .8em 0 .5em;
+    }
+    .Transactions .content{
+        max-height: 50vh;
+        padding: .5em 1em 1em;
+    }
+}
+@media screen and (max-width: 800px){
+    .TransactionItem{
+        padding: .3em 0 .1em;
+    }
+}
+@media screen and (max-width: 500px){
+    .Transactions header{
+        padding: 1em 1em;
+    }
+}

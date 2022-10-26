@@ -1,0 +1,65 @@
+.MainData{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-content: center;
+}
+
+/*block*/
+.MainData .block{
+    min-height: 160px;
+    display: flex;
+    align-content: space-between;
+    flex-wrap: wrap;
+    width: calc(50% - .5em);
+    padding: 1.5em 1.2em;
+    border-radius: .5em;
+    color: var(--white);
+    background: linear-gradient(189.74deg, #306E82 21.04%, #015849 71.04%);
+}
+/*block header*/
+.MainData .block header{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+.MainData .block header div,
+.MainData .block header span{
+    display: flex;
+    align-items: center;
+}
+.MainData .block header div h5,
+.MainData .block header span p{
+    margin: 0 .5em;
+}
+.MainData .block header span p{
+    color: #71B0B7;
+}
+/*block footer*/
+.MainData .block footer{
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+    flex-wrap: wrap;
+}
+.MainData .block footer p{
+    overflow: hidden;
+    margin: 0;
+}
+/*right block footer data*/
+.MainData .block footer.right{
+    justify-content: flex-end;
+    flex-direction:column;
+}
+.MainData .block footer.right h5,
+.MainData .block footer.right h4{
+    text-align: right;
+    margin: 0;
+}
+.MainData .block footer.right h5{
+    color: #71B0B7;
+    font-weight: 300;
+}
+.MainData .block footer.right h4{
+    color: var(--green-04c);
+}
