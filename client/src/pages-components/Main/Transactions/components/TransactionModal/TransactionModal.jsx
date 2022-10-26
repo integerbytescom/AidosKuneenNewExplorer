@@ -69,7 +69,7 @@ const TransactionModal = ({data,show,onHide}) => {
                                     getStrAfterDot(data['value']/Math.pow(10,6)):
                                     getStrAfterDot(data['value']/Math.pow(10,18))
                             }
-                            <small style={{fontSize:10,fontWeight:200}}>
+                            <small style={{fontSize:12,fontWeight:200,marginLeft:3}}>
                                 {data['tokenname']?data['tokenname']:'ADK'}
                             </small>
                         </p>

@@ -12,7 +12,13 @@ const SearchResult = ({searchRes}) => {
                 marginBottom:"2em",
             }}
         >
-            {searchRes[1] && <h5 style={{color:"white"}}>Information about {searchRes[0]}:</h5>}
+            {
+                searchRes[1] &&
+                <h5 className={"text-white fw-light"}>
+                    Information about <strong className={"fw-semibold"}>{searchRes[0]}</strong>:
+                </h5>
+            }
+
             {
                 searchRes[1]?
                     <>

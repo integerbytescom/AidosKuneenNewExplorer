@@ -37,7 +37,7 @@ nav.navbar-expand.NavbarTop{
     display: flex;
     align-items: center;
     background: var(--nav-but-blue);
-    padding: .6em 1.5em;
+    padding: .4em 1.5em;
     border-radius: .4em;
     transition: .3s;
     border: none;

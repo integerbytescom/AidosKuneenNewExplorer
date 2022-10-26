@@ -1,6 +1,7 @@
 import React from 'react';
 import './MainData.css';
 import './MainDataMedia.css';
+import {getStrAfterDot} from "../../../../../functions/getStrAfterDot";
 
 const MainData = ({searchRes}) => {
     return (
@@ -43,7 +44,7 @@ const MainData = ({searchRes}) => {
                     </h5>
                     {
                         searchRes[0] === 'address' ?
-                            <h4>{searchRes[1].balance/Math.pow(10,18) + ' ADK'}</h4> :
+                            <h4>{(searchRes[1] && getStrAfterDot(searchRes[1].balance/Math.pow(10,18))) + ' ADK'}</h4> :
                             <p style={{color:'white',fontWeight:400,textAlign:"right"}}>
                                 {(searchRes[1].to).slice(0,30) + '...'}
                             </p>

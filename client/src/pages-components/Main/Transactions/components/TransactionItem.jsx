@@ -39,7 +39,7 @@ const TransactionItem = ({token,data,setModalShow,setDataModal}) => {
                                 getStrAfterDot(data['value']/Math.pow(10,18))
                         }
                         {/*{getStrAfterDot(data['value']/Math.pow(10,18))}*/}
-                        <small style={{fontSize:10,fontWeight:200}}>{token?data['tokenname']:'ADK'}</small>
+                        <small style={{fontSize:11,fontWeight:200,marginLeft:1}}>{token?data['tokenname']:'ADK'}</small>
                     </button>
                 </div>
             </div>
