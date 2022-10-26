@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import './SearchMain.css';
 import './SearchMainMedia.css';
 import SearchResult from "./components/SearchResult/SearchResult";
@@ -6,7 +6,7 @@ import {useWeb3React} from "@web3-react/core";
 import {web3} from "../../constants/web3";
 
 
-const SearchMain = ({searchFocus,setSearchFocus}) => {
+const SearchMain = ({query,setQuery,searchFocus,setSearchFocus}) => {
 
 
     const {
@@ -30,13 +30,7 @@ const SearchMain = ({searchFocus,setSearchFocus}) => {
     //     web3.eth.getTransactionCount(account).then(res => console.log(res,'getTransactionCount'))
     // }
 
-
-    // good hash = 0xdafff78579d611cc4feaccbc8bef8d8c9782439c355c94d568c7717500dd7915
-    // bad hash = 0xdafff78579d611cc4feaccbc8bef8d8c97834391355c94d568c7717500dd7915
-    // good adress = 0x00a8a137490a3870a4cd9d73a75a563d1f017053
-    // good adress = 0x1786d0ca2b790e80e8c78c4eaa496cae806ff668
-
-    const [searchRes,setSearchRes] = useState([])
+    const [searchRes,setSearchRes] = useState([]);
 
     const handleSearch = value => {
         if(value.length === 42){
@@ -46,7 +40,9 @@ const SearchMain = ({searchFocus,setSearchFocus}) => {
         }else return false
     }
 
-    // console.log(searchRes)
+    useEffect(() => {
+        handleSearch(query)
+    },[query])
 
     return (
         <>
@@ -55,7 +51,8 @@ const SearchMain = ({searchFocus,setSearchFocus}) => {
                     <input
                         type="text"
                         placeholder={`0x style txid or address`}
-                        onChange={e => handleSearch(e.target.value)}
+                        value={query}
+                        onChange={e => setQuery(e.target.value)}
                         onFocus={() => setSearchFocus(true)}
                     />
                     {

@@ -1,14 +1,13 @@
-import React, {useEffect, useState} from 'react';
+import React, {useState} from 'react';
 import TransactionItem from "./components/TransactionItem";
 import './Transactions.css';
 import './TransactionsMedia.css';
 import TransactionItemMore from "./components/TransactionItemMore";
 import TransactionModal from "./components/TransactionModal/TransactionModal";
 import PaginateItemMore from "./components/PaginateItemMore/PaginateItemMore";
-import {Alert, Spinner} from "react-bootstrap";
-import axios from "axios";
+import {Spinner} from "react-bootstrap";
 
-const Transactions = ({showAllTrans,setShowAllTrans}) => {
+const Transactions = ({showAllTrans,setShowAllTrans,transAll,transAllTokens}) => {
 
     const [activeTrans,setActiveTrans] = useState(1)
 
@@ -18,12 +17,6 @@ const Transactions = ({showAllTrans,setShowAllTrans}) => {
     //for modal data inner
     const [dataModal,setDataModal] = useState([])
 
-    //all transactions from database
-    const [transAll,setTransAll] = useState([])
-    const [transAllTokens,setTransAllTokens] = useState([])
-    // console.log(transAll);
-    // console.log(transAllTokens);
-
     //for paginate
     const [currentPage,setCurrentPage] = useState(1)
     const [lengthPage] = useState(20)
@@ -31,12 +24,6 @@ const Transactions = ({showAllTrans,setShowAllTrans}) => {
     const getDataPaginate = (arr) =>{
         return arr.slice((currentPage - 1) * lengthPage,(currentPage - 1) * lengthPage + lengthPage)
     }
-
-    useEffect(() => {
-        //get all transactions from mysql
-        axios.get('http://localhost:8000/getTransAll').then(result => setTransAll([...result.data]));
-        axios.get('http://localhost:8000/getTransAllTokens').then(result => setTransAllTokens([...result.data]));
-    },[])
 
     // console.log(transAll,'List all transactions in Transactions.jsx');
 

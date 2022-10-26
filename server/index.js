@@ -2,7 +2,7 @@ const express = require("express");
 const mysql = require("mysql");
 const cors = require("cors");
 const bodyParser = require("body-parser")
-const {transactionsAgsAll, transactionsAccount, transactionsTokensAll} = require("./requests");
+const {transactionsAgsAll, transactionsTokensAll} = require("./requests");
 
 //app settings
 const app = express();
