@@ -58,7 +58,7 @@
 
 /* --- content item --- */
 .TransactionItem{
-    min-width: 600px;
+    min-width: 700px;
     padding: 1em 0 .5em;
     border-bottom: 1px solid #292A3A;
     display: flex;

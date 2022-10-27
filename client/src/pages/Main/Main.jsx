@@ -13,6 +13,7 @@ const Main = () => {
     //all transactions from database
     const [transAll,setTransAll] = useState([])
     const [transAllTokens,setTransAllTokens] = useState([])
+    const [oldAccounts,setOldAccounts] = useState([])
     // console.log(transAll);
     // console.log(transAllTokens);
 
@@ -23,7 +24,10 @@ const Main = () => {
     useEffect(() => {
         //get all transactions from mysql
         axios.get('http://localhost:8000/getTransAll').then(result => setTransAll([...result.data]));
+        //token transactions from mysql
         axios.get('http://localhost:8000/getTransAllTokens').then(result => setTransAllTokens([...result.data]));
+        //old data about accounts grom mysql
+        axios.get('http://localhost:8000/getAccountsOld').then(result => setOldAccounts([...result.data]));
     },[])
 
     // good hash = 0xdafff78579d611cc4feaccbc8bef8d8c9782439c355c94d568c7717500dd7915
@@ -43,13 +47,21 @@ const Main = () => {
                     !(query.length !== 42 && query && searchFocus) &&
                     (
                         (query.length === 42 && searchFocus)?
+                            // with sort for search
                             <Transactions
                                 transAll={transAll.filter(trans => (trans['txto']===query || trans['txfrom']===query))}
                                 transAllTokens={transAllTokens.filter(trans => (trans['txto']===query || trans['txfrom']===query))}
                                 showAllTrans={showAllTrans}
                                 setShowAllTrans={setShowAllTrans}
                             />:
-                            <Transactions transAll={transAll} transAllTokens={transAllTokens} showAllTrans={showAllTrans} setShowAllTrans={setShowAllTrans} />
+                            // without sort for search (show all results)
+                            <Transactions
+                                transAll={transAll}
+                                transAllTokens={transAllTokens}
+                                showAllTrans={showAllTrans}
+                                setShowAllTrans={setShowAllTrans}
+                                oldAccounts={oldAccounts.sort((a, b) => b['balance'] - a['balance'])}
+                            />
                     )
                 }
             </div>

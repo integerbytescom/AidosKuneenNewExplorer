@@ -6,10 +6,11 @@ import TransactionItemMore from "./components/TransactionItemMore";
 import TransactionModal from "./components/TransactionModal/TransactionModal";
 import PaginateItemMore from "./components/PaginateItemMore/PaginateItemMore";
 import {Alert} from "react-bootstrap";
+import AccountsItem from "./components/AccountsItem";
 
-const Transactions = ({showAllTrans,setShowAllTrans,transAll,transAllTokens}) => {
+const Transactions = ({showAllTrans,setShowAllTrans,transAll,transAllTokens,oldAccounts}) => {
 
-    const [activeTrans,setActiveTrans] = useState(1)
+    const [activeTrans,setActiveTrans] = useState(1);
 
     //modal for trans
     const [modalShow, setModalShow] = React.useState(false);
@@ -32,6 +33,7 @@ const Transactions = ({showAllTrans,setShowAllTrans,transAll,transAllTokens}) =>
             <header>
                 <h6 onClick={() => setActiveTrans(1)} className={activeTrans===1?'act':''}>ADK Transactions</h6>
                 <h6 onClick={() => setActiveTrans(2)} className={activeTrans===2?'act':''} >akTOKEN Transactions</h6>
+                <h6 onClick={() => setActiveTrans(3)} className={activeTrans===3?'act':''} >Claim status AZ9</h6>
             </header>
 
             {/*warninig alert tell you that trans.lenght = 0*/}
@@ -43,7 +45,7 @@ const Transactions = ({showAllTrans,setShowAllTrans,transAll,transAllTokens}) =>
 
                 {/*header for big table*/}
                 {
-                    showAllTrans &&
+                    (showAllTrans && activeTrans!==3) &&
                     <div className={'header-show-table'}>
                         <p className={'small'}>TXID ID</p>
                         <p className={'small'}>Data</p>
@@ -57,22 +59,35 @@ const Transactions = ({showAllTrans,setShowAllTrans,transAll,transAllTokens}) =>
                     </div>
                 }
 
-                {
-                    activeTrans===1?
+                {//show adk transactions
+                    activeTrans===1 &&
                         Boolean(Object.values(getDataPaginate(transAll)).length) &&
                             getDataPaginate(transAll).map((elem,ids) =>(
                             showAllTrans?
                                 <TransactionItemMore key={ids} data={elem} setDataModal={setDataModal} setModalShow={setModalShow} />:
                                 <TransactionItem key={ids} data={elem} setDataModal={setDataModal} setModalShow={setModalShow} />
-                        )):
-                        Boolean(Object.values(getDataPaginate(transAllTokens)).length) &&
-                            getDataPaginate(transAllTokens).map((elem,ids) =>(
-                                showAllTrans?
-                                    <TransactionItemMore token={true} key={ids} data={elem} setDataModal={setDataModal} setModalShow={setModalShow} />:
-                                    <TransactionItem token={true} key={ids} data={elem} setDataModal={setDataModal} setModalShow={setModalShow} />
-                            ))
+                        ))
                 }
 
+                {//show akTOKEN transactions
+                    activeTrans===2 &&
+                    Boolean(Object.values(getDataPaginate(transAllTokens)).length) &&
+                    getDataPaginate(transAllTokens).map((elem,ids) =>(
+                        showAllTrans?
+                            <TransactionItemMore token={true} key={ids} data={elem} setDataModal={setDataModal} setModalShow={setModalShow} />:
+                            <TransactionItem token={true} key={ids} data={elem} setDataModal={setDataModal} setModalShow={setModalShow} />
+                    ))
+                }
+
+                {//show data with old accounts
+                    activeTrans===3 &&
+                    Boolean(Object.values(getDataPaginate(oldAccounts)).length) &&
+                    getDataPaginate(oldAccounts).map((elem,ids) =>(
+                        <AccountsItem key={ids} data={elem} />
+                    ))
+                }
+
+                {/*modal for more info about trans*/}
                 <TransactionModal
                     data={dataModal}
                     show={modalShow}
@@ -90,7 +105,11 @@ const Transactions = ({showAllTrans,setShowAllTrans,transAll,transAllTokens}) =>
             {
                 showAllTrans &&
                 <PaginateItemMore
-                    allPages={Math.ceil((activeTrans===1?transAll:transAllTokens).length/lengthPage)}
+                    allPages={Math.ceil((
+                        activeTrans===1?transAll:
+                            activeTrans===2?transAllTokens:
+                                oldAccounts
+                    ).length/lengthPage)}
                     currentPage={currentPage}
                     setCurrentPage={setCurrentPage}
                 />
