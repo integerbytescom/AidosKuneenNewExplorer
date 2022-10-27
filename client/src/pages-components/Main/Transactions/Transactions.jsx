@@ -37,9 +37,9 @@ const Transactions = ({showAllTrans,setShowAllTrans,transAll,transAllTokens,oldA
             </header>
 
             {/*warninig alert tell you that trans.lenght = 0*/}
-            {(activeTrans===1 && !transAll.length) && <Alert variant={"success"} className={"alert-trans"}>No data ADK transactions</Alert>}
-            {(activeTrans===2 && !transAllTokens.length) && <Alert variant={"success"} className={"alert-trans"}>No data akTOKEN transactions</Alert>}
-
+            {(activeTrans===1 && !transAll.length) && <Alert variant={"success"} className={"alert-trans"}>No data in ADK transactions</Alert>}
+            {(activeTrans===2 && !transAllTokens.length) && <Alert variant={"success"} className={"alert-trans"}>No data in akTOKEN transactions</Alert>}
+            {(activeTrans===3 && !oldAccounts.length) && <Alert variant={"success"} className={"alert-trans"}>No data claim in status AZ9</Alert>}
 
             <div className={`content ${showAllTrans?"show":""}`}>
 

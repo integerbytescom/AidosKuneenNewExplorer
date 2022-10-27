@@ -6,7 +6,7 @@ import {useWeb3React} from "@web3-react/core";
 import {web3} from "../../constants/web3";
 
 
-const SearchMain = ({query,setQuery,searchFocus,setSearchFocus}) => {
+const SearchMain = ({query,setQuery,searchFocus,setSearchFocus,oldAccounts}) => {
 
 
     const {
@@ -37,11 +37,15 @@ const SearchMain = ({query,setQuery,searchFocus,setSearchFocus}) => {
             web3.eth.getBalance(value).then(res => setSearchRes(['address',{address:value,balance:res}]))
         }else if(value.length === 66){
             web3.eth.getTransaction(value).then(res => setSearchRes(['transaction', res]))
-        }else return false
+        }else if(value.length === 90){
+            setSearchRes(['oldAccounts', oldAccounts])
+        }
+        else return false
     }
 
     useEffect(() => {
         handleSearch(query)
+        //eslint-disable-next-line
     },[query])
 
     return (
@@ -50,7 +54,7 @@ const SearchMain = ({query,setQuery,searchFocus,setSearchFocus}) => {
                 <div className="input-container">
                     <input
                         type="text"
-                        placeholder={`0x style txid or address`}
+                        placeholder={`0x style txid, address or AZ9 Address`}
                         value={query}
                         onChange={e => setQuery(e.target.value)}
                         onFocus={() => setSearchFocus(true)}

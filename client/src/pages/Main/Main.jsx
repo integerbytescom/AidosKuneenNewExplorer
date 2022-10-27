@@ -34,11 +34,20 @@ const Main = () => {
     // bad hash = 0xdafff78579d611cc4feaccbc8bef8d8c97834391355c94d568c7717500dd7915
     // good adress = 0x00a8a137490a3870a4cd9d73a75a563d1f017053
     // good adress = 0x1786d0ca2b790e80e8c78c4eaa496cae806ff668
+    // good old adress = FEVDFPYCDKYPSYPV9STTPYYMNZLXESYOBNLSAYFNSB9N9TSEGZMMHWBJVWBBZNW9SNHBXMEOHQEJUCLQ9THKEJAYTD
+    // bad old adress = FEVDFPYCDKYPSYPV9STTPYYMNZLXESYOBNLSAYFNSB9N9TSEGZMKLWBJVWBBZNW9SNHBXMEOHQEJUCLQ9THKEJAYTX
 
     return (
         <div className={`Main ${searchFocus?"focus":""}`}>
             <div className="container-small">
-                <SearchMain query={query} setQuery={setQuery} searchFocus={searchFocus} setSearchFocus={setSearchFocus} />
+                <SearchMain
+                    query={query}
+                    setQuery={setQuery}
+                    searchFocus={searchFocus}
+                    setSearchFocus={setSearchFocus}
+                    // old accounts res with filter with queris on search
+                    oldAccounts={oldAccounts.filter(acc => (acc['AZ9Address']===query || acc['az9_hash']===query))}
+                />
                 {!(query && searchFocus) && <ApiDataBlock />}
             </div>
             <div className={showAllTrans?'container':'container-small'}>
@@ -46,11 +55,12 @@ const Main = () => {
                 {
                     !(query.length !== 42 && query && searchFocus) &&
                     (
-                        (query.length === 42 && searchFocus)?
+                        (query.length === 42  && searchFocus)?
                             // with sort for search
                             <Transactions
                                 transAll={transAll.filter(trans => (trans['txto']===query || trans['txfrom']===query))}
                                 transAllTokens={transAllTokens.filter(trans => (trans['txto']===query || trans['txfrom']===query))}
+                                oldAccounts={oldAccounts.filter(acc => (acc['AZ9Address']===query || acc['az9_hash']===query))}
                                 showAllTrans={showAllTrans}
                                 setShowAllTrans={setShowAllTrans}
                             />:

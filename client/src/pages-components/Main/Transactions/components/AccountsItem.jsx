@@ -5,10 +5,12 @@ const AccountsItem = ({data}) => {
 
     // console.log(data,'AccountsItem data');
 
+    //str slice functions
     const sliceStr = (value) =>{
         return String(value).slice(0,20) + '...'
     }
 
+    //redact balance format
     const getBalance = value => {
         return Number(getStrAfterDot(value/Math.pow(10,8))).toLocaleString("RU")
     }
