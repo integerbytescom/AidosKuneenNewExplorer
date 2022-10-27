@@ -56,6 +56,7 @@ body{
 }
 @media screen and (max-width: 600px){
     body{background-size: 250%;}
+    .alert-success{font-size: 10px !important;}
 }
 
 *::-webkit-scrollbar {

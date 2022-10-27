@@ -78,15 +78,15 @@ const TokenData = ({searchRes}) => {
                     {getBlockToken(
                         "Account Balance",
                         "",
-                        `${Number(getStrAfterDot(searchRes[1][0]['balance']/Math.pow(10,8))).toLocaleString("RU")} ADK`,
+                        `${Number(getStrAfterDot(searchRes[1]['balance']/Math.pow(10,8))).toLocaleString("RU")} ADK`,
                         "",
-                        `${searchRes[1][0]['claimed']}`
+                        `${searchRes[1]['claimed']}`
                     )}
                     {getBlockToken(
                         "Block",
                         "",
                         "",
-                        `${searchRes[1][0]['block']===-1?'No info about block':searchRes[1][0]['block']}`,
+                        `${searchRes[1]['block']===-1?'No info about block':searchRes[1]['block']}`,
                         ""
                     )}
                 </>

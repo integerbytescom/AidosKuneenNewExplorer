@@ -7,6 +7,11 @@ const MainData = ({searchRes}) => {
 
     // console.log(searchRes,'searchRes in MainData');
 
+    //get str resresres...resresres
+    const getStrCenterDot = str => {
+        return str.slice(0,15) + '...' + str.slice(str.length - 15,str.length)
+    }
+
     return (
         <div className={'MainData'}>
 
@@ -24,8 +29,11 @@ const MainData = ({searchRes}) => {
                 <footer>
                     <p>
                         {searchRes[0] === 'address' && searchRes[1].address}
-                        {searchRes[0] === 'transaction' && (searchRes[1].from).slice(0,30) + '...'}
-                        {searchRes[0] === 'oldAccounts' && (searchRes[1][0]['AZ9Address']).slice(0,30) + '...'}
+                        {searchRes[0] === 'transaction' && getStrCenterDot(searchRes[1].from)}
+                        {
+                            searchRes[0] === 'oldAccounts' &&
+                            getStrCenterDot(searchRes[1]['AZ9Address'])
+                        }
                     </p>
                 </footer>
             </div>
@@ -45,7 +53,7 @@ const MainData = ({searchRes}) => {
                     <h5>
                         {searchRes[0] === 'address' && searchRes[1].balance + ' units'}
                         {searchRes[0] === 'transaction' && 'Sended: ' + searchRes[1].value/Math.pow(10,18) + ' ADK'}
-                        {searchRes[0] === 'oldAccounts' && (searchRes[1][0]['az9_hash']).slice(0,30) + '...'}
+                        {searchRes[0] === 'oldAccounts' && (searchRes[1]['az9_hash']).slice(0,30) + '...'}
                     </h5>
                     {
                         searchRes[0] === 'address' &&
@@ -55,7 +63,7 @@ const MainData = ({searchRes}) => {
                     {
                         searchRes[0] === 'transaction' &&
                         <p style={{color:'white',fontWeight:400,textAlign:"right"}}>
-                            {(searchRes[1].to).slice(0,30) + '...'}
+                            {getStrCenterDot(searchRes[1].to)}
                         </p>
                     }
                 </footer>

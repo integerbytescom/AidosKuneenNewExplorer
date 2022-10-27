@@ -20,7 +20,7 @@
 @media screen and (max-width: 500px){
     .NavbarTop .logo{align-items: center !important;}
     .NavbarTop .logo span{padding-top: 0 !important;}
-    .NavbarTop .logo img{width: 30px}
+    .NavbarTop .logo img{width: 25px}
     .NavbarTop .logo span div{display: none}
     .NavbarTop button.connect span{display: none}
 }

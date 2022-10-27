@@ -5,12 +5,13 @@ import {Alert, Spinner} from "react-bootstrap";
 
 
 const SearchResult = ({searchRes}) => {
+
+    console.log(searchRes)
+
     return (
         <div
             className={`SearchResult`}
-            style={{
-                marginBottom:"2em",
-            }}
+            style={{marginBottom:"2em",}}
         >
             {
                 searchRes[1] &&
@@ -34,7 +35,7 @@ const SearchResult = ({searchRes}) => {
                                 variant={"success"}
                             >
                                 Enter the correct query and the data will be displayed here.
-                                Txid must contain 66 characters and the address 42 characters.
+                                Txid must contain 66 chars, the address 42 chars, AZ9 address 90 chars.
                                 <Spinner animation={'border'} variant={"success"} size={"sm"} />
                             </Alert>
             }

@@ -38,7 +38,7 @@ const SearchMain = ({query,setQuery,searchFocus,setSearchFocus,oldAccounts}) => 
         }else if(value.length === 66){
             web3.eth.getTransaction(value).then(res => setSearchRes(['transaction', res]))
         }else if(value.length === 90){
-            setSearchRes(['oldAccounts', oldAccounts])
+            setSearchRes(['oldAccounts', oldAccounts[0]])
         }
         else return false
     }

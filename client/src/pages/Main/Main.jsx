@@ -11,9 +11,9 @@ const Main = () => {
     const [query,setQuery] = useState('');
 
     //all transactions from database
-    const [transAll,setTransAll] = useState([])
-    const [transAllTokens,setTransAllTokens] = useState([])
-    const [oldAccounts,setOldAccounts] = useState([])
+    const [transAll,setTransAll] = useState([]);
+    const [transAllTokens,setTransAllTokens] = useState([]);
+    const [oldAccounts,setOldAccounts] = useState([]);
     // console.log(transAll);
     // console.log(transAllTokens);
 
