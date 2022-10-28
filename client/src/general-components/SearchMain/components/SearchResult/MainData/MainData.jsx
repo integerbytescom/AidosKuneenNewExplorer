@@ -1,9 +1,9 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import './MainData.css';
 import './MainDataMedia.css';
 import {getStrAfterDot} from "../../../../../functions/getStrAfterDot";
 
-const MainData = ({searchRes}) => {
+const MainData = ({searchRes,query}) => {
 
     // console.log(searchRes,'searchRes in MainData');
 
@@ -11,6 +11,8 @@ const MainData = ({searchRes}) => {
     const getStrCenterDot = str => {
         return str.slice(0,15) + '...' + str.slice(str.length - 15,str.length)
     }
+
+    useEffect(() => {},[searchRes,query])
 
     return (
         <div className={'MainData'}>

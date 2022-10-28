@@ -15,7 +15,7 @@ app.listen(8000, () => console.log('app started'));
 const connection = mysql.createConnection({
     host: "localhost",
     user: "root",
-    database: "aidos_test",//YOUR DATABASE
+    database: "aidoskuneen",//YOUR DATABASE
     password: ""
 });
 

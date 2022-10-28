@@ -4,9 +4,9 @@ import TokenData from "./TokenData/TokenData";
 import {Alert, Spinner} from "react-bootstrap";
 
 
-const SearchResult = ({searchRes}) => {
+const SearchResult = ({searchRes,query,tokensData}) => {
 
-    console.log(searchRes)
+    // console.log(searchRes);
 
     return (
         <div
@@ -23,8 +23,8 @@ const SearchResult = ({searchRes}) => {
             {
                 searchRes[1]?
                     <>
-                        <MainData searchRes={searchRes} />
-                        <TokenData searchRes={searchRes} />
+                        <MainData query={query} searchRes={searchRes} />
+                        <TokenData query={query} searchRes={searchRes} tokensData={tokensData} />
                     </>:
                         !window.ethereum ?
                             <Alert variant={"danger"} className={"small p-2"}>

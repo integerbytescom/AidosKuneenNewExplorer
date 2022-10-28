@@ -30,10 +30,15 @@ const Main = () => {
         axios.get('http://localhost:8000/getAccountsOld').then(result => setOldAccounts([...result.data]));
     },[])
 
+    //0x5ca9b465ac500f0536cb4c2e549fc8456a34a91c - 1usdt 5332akadk
+    //0xacfc3866cb9b53e589c9c7c2acacc5d6775a0d25 - 5000btl
+    //0x73501c407da847717ae2c21f84d287112ea0ba20
+
     // good hash = 0xdafff78579d611cc4feaccbc8bef8d8c9782439c355c94d568c7717500dd7915
     // bad hash = 0xdafff78579d611cc4feaccbc8bef8d8c97834391355c94d568c7717500dd7915
     // good adress = 0x00a8a137490a3870a4cd9d73a75a563d1f017053
     // good adress = 0x1786d0ca2b790e80e8c78c4eaa496cae806ff668
+    // bad adress = 0x1786d0ca2b490e80e8c78c4eaa496cae806ff663
     // good old adress = FEVDFPYCDKYPSYPV9STTPYYMNZLXESYOBNLSAYFNSB9N9TSEGZMMHWBJVWBBZNW9SNHBXMEOHQEJUCLQ9THKEJAYTD
     // bad old adress = FEVDFPYCDKYPSYPV9STTPYYMNZLXESYOBNLSAYFNSB9N9TSEGZMKLWBJVWBBZNW9SNHBXMEOHQEJUCLQ9THKEJAYTX
 

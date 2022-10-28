@@ -16,6 +16,7 @@ const SearchMain = ({query,setQuery,searchFocus,setSearchFocus,oldAccounts}) => 
         account,
     } = useWeb3React();
 
+
     // web3.eth.getBlockNumber()
     //     .then(res => web3.eth.getBlock(res).then(res => console.log(res,'getBlock dataBlock')))
 
@@ -77,7 +78,7 @@ const SearchMain = ({query,setQuery,searchFocus,setSearchFocus,oldAccounts}) => 
                 </div>
             </div>
 
-            {searchFocus && <SearchResult searchRes={searchRes} />}
+            {searchFocus && <SearchResult query={query} searchRes={searchRes} />}
         </>
     );
 };
