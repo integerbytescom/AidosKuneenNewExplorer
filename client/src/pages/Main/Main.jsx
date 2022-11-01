@@ -32,7 +32,7 @@ const Main = () => {
         axios.get('http://localhost:5000/getAccountsOld').then(result => setOldAccounts([...result.data]));
 
         //queries from https://blockscout.com
-        axios.get(`https://blockscout.com/eth/mainnet/api?module=account&action=txlist&address=0x888888881f8af02398dc3fee2a243b66356717f8`).then(res => console.log(res));
+        // axios.get(`https://blockscout.com/eth/mainnet/api?module=account&action=txlist&address=0x888888881f8af02398dc3fee2a243b66356717f8`).then(res => console.log(res));
     },[])
 
     //0x5ca9b465ac500f0536cb4c2e549fc8456a34a91c - 1usdt 5332akadk

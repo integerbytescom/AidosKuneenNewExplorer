@@ -66,9 +66,10 @@ const TokenData = ({searchRes,query}) => {
                     {getBlockToken(
                         "Block info",
                         "",
-                        `Num: ${searchRes[1].blockNumber}`,
+                        `Hash: ${(searchRes[1].blockHash).slice(0,20) + '...'}`,
                         "",
-                        `Hash: ${(searchRes[1].blockHash).slice(0,25) + '...'}`
+                        "",
+                        // `Hash: ${(searchRes[1].blockHash).slice(0,20) + '...'}`
                     )}
                     {getBlockToken(
                         "Gas",
@@ -125,28 +126,32 @@ const TokenData = ({searchRes,query}) => {
                         "balance",
                         `${(Number(fcc)/Math.pow(10,18)).toLocaleString()} FCC`,
                         "",
-                        `${fcc + ' units'}`
+                        "",
+                        // `${fcc + ' units'}`
                     )}
                     {getBlockToken(
                         `akBTL (Bitlocus)`,
                         "balance",
                         `${(Number(btl)/Math.pow(10,6)).toLocaleString()} BTL`,
                         "",
-                        `${btl + ' units'}`
+                        "",
+                        // `${btl + ' units'}`
                     )}
                     {getBlockToken(
                         `akBSC-USDT (Binance USDT)`,
                         "balance",
                         `${(Number(usdt)/Math.pow(10,18)).toLocaleString()} USDT`,
                         "",
-                        `${usdt + ' units'}`
+                        "",
+                        // `${usdt + ' units'}`
                     )}
                     {getBlockToken(
                         `akADK (Wrapped ADK)`,
                         "balance",
                         `${(Number(aadk)/Math.pow(10,18)).toLocaleString()} aADK`,
                         "",
-                        `${aadk + ' units'}`
+                        "",
+                        // `${aadk + ' units'}`
                     )}
                 </>
             }

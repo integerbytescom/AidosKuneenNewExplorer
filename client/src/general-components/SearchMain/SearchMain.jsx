@@ -44,6 +44,13 @@ const SearchMain = ({query,setQuery,searchFocus,setSearchFocus,oldAccounts}) => 
         else return false
     }
 
+    //clear search and search res close search
+    const handleClearSearch = () => {
+        setSearchFocus(false)
+        setSearchRes([])
+        setQuery('')
+    }
+
     useEffect(() => {
         handleSearch(query)
         //eslint-disable-next-line
@@ -66,7 +73,7 @@ const SearchMain = ({query,setQuery,searchFocus,setSearchFocus,oldAccounts}) => 
                                 className={`close img-inp`}
                                 src="/images/general/x.svg"
                                 alt="close"
-                                onClick={() => setSearchFocus(false)}
+                                onClick={() => handleClearSearch(false)}
                             />
                     }
                     <img
