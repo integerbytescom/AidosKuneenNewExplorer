@@ -21,13 +21,18 @@ const Main = () => {
     const [searchFocus,setSearchFocus] = useState(false);
     const [showAllTrans,setShowAllTrans] = useState(false);
 
+    // 0x888888881f8af02398dc3fee2a243b66356717f8
+
     useEffect(() => {
         //get all transactions from mysql
-        axios.get('http://localhost:8000/getTransAll').then(result => setTransAll([...result.data]));
+        axios.get('http://localhost:5000/getTransAll').then(result => setTransAll([...result.data]));
         //token transactions from mysql
-        axios.get('http://localhost:8000/getTransAllTokens').then(result => setTransAllTokens([...result.data]));
-        //old data about accounts grom mysql
-        axios.get('http://localhost:8000/getAccountsOld').then(result => setOldAccounts([...result.data]));
+        axios.get('http://localhost:5000/getTransAllTokens').then(result => setTransAllTokens([...result.data]));
+        //old data about accounts from mysql
+        axios.get('http://localhost:5000/getAccountsOld').then(result => setOldAccounts([...result.data]));
+
+        //queries from https://blockscout.com
+        axios.get(`https://blockscout.com/eth/mainnet/api?module=account&action=txlist&address=0x888888881f8af02398dc3fee2a243b66356717f8`).then(res => console.log(res));
     },[])
 
     //0x5ca9b465ac500f0536cb4c2e549fc8456a34a91c - 1usdt 5332akadk

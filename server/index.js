@@ -1,7 +1,8 @@
 const express = require("express");
 const mysql = require("mysql");
 const cors = require("cors");
-const bodyParser = require("body-parser")
+const path = require("path");
+const bodyParser = require("body-parser");
 const {transactionsAgsAll, transactionsTokensAll, accountsOldAll} = require("./requests");
 
 //app settings
@@ -9,7 +10,9 @@ const app = express();
 app.use(cors());
 app.use(bodyParser());
 
-app.listen(8000, () => console.log('app started'));
+app.use(express.static(path.join(__dirname,'../client/build')))
+const PORT = process.env.PORT || 5000;
+app.listen(PORT);
 
 //connect to mysql database (ENTER YOUR DATA)
 const connection = mysql.createConnection({
