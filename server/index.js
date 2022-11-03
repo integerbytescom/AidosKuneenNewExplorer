@@ -10,15 +10,31 @@ const app = express();
 app.use(cors());
 app.use(bodyParser());
 
-app.use(express.static(path.join(__dirname,'../client/build')))
-const PORT = process.env.PORT || 5000;
+app.use(express.static(path.join(__dirname,'../client/build')));
+const PORT = process.env.PORT || 8000;
+
+// Add headers for error CORS
+app.use(function (req, res, next) {
+    // Website you wish to allow to connect
+    res.setHeader('Access-Control-Allow-Origin', '*');
+    // Request methods you wish to allow
+    res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
+    // Request headers you wish to allow
+    res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With,content-type');
+    // Set to true if you need the website to include cookies in the requests sent
+    // to the API (e.g. in case you use sessions)
+    res.setHeader('Access-Control-Allow-Credentials', true);
+    // Pass to next layer of middleware
+    next();
+});
+
 app.listen(PORT);
 
 //connect to mysql database (ENTER YOUR DATA)
 const connection = mysql.createConnection({
     host: "localhost",
     user: "root",
-    database: "aidoskuneen",//YOUR DATABASE
+    database: "aidos_test",//YOUR DATABASE
     password: ""
 });
 
