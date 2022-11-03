@@ -57,3 +57,18 @@ nav.navbar-expand.NavbarTop{
 .NavbarTop button.connect.success:hover{
     background: var(--lite-green);
 }
+
+.bridgeLink{
+    margin-right: 10px;
+    padding: .4em 1.5em;
+    font-size: .9em;
+    background: var(--search-bot);
+    color: var(--white);
+    text-decoration: none;
+    border-radius: .4em;
+    transition: .3s;
+}
+.bridgeLink:hover{
+    color: var(--white);
+    background: var(--api-h5);
+}

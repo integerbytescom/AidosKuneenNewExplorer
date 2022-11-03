@@ -24,3 +24,10 @@
     .NavbarTop .logo span div{display: none}
     .NavbarTop button.connect span{display: none}
 }
+
+/*hide bridge link*/
+@media screen and (max-width: 420px){
+    a.bridgeLink{
+        display: none;
+    }
+}
