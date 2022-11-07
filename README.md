@@ -1,4 +1,7 @@
-![alt text](public/images/general/logo.svg)
+<p align="center">
+  <img width="170" height="210" src="public/images/general/logo-big.svg">
+</p>
+
 # AidosKuneenNewExplorer
 
 This application was created to collect information about transactions and accounts in the ADK Mainnet network.
