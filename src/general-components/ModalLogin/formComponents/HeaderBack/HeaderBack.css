@@ -1,0 +1,19 @@
+.HeaderBack{
+    font-weight: 400;
+    display: flex;
+    align-items: center;
+    color: var(--white);
+    width: 100%;
+    border-radius: .5em .5em 0 0;
+    padding: .85em 1.7em;
+    background: none;
+    border: none;
+    border-bottom: 1px solid #2B2D40;
+    transition: .3s;
+}
+.HeaderBack img{
+    margin-right: .6em;
+}
+.HeaderBack:hover{
+    background: var(--white-op1);
+}

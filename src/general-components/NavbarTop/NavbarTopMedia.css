@@ -1,0 +1,33 @@
+@media screen and (max-width: 1200px){
+    .NavbarTop .logo span div{
+        margin: 0 0 0 50%;
+        font-size: .65em;
+    }
+}
+
+@media screen and (max-width: 800px){
+    nav.navbar-expand.NavbarTop{
+        padding: 1em;
+    }
+    .NavbarTop button.connect span{
+        margin-right: 5px;
+    }
+    .NavbarTop button.connect{
+        font-size: .8em;
+    }
+}
+
+@media screen and (max-width: 500px){
+    .NavbarTop .logo{align-items: center !important;}
+    .NavbarTop .logo span{padding-top: 0 !important;}
+    .NavbarTop .logo img{width: 25px}
+    .NavbarTop .logo span div{display: none}
+    .NavbarTop button.connect span{display: none}
+}
+
+/*hide bridge link*/
+@media screen and (max-width: 420px){
+    a.bridgeLink{
+        display: none;
+    }
+}

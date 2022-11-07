@@ -1,0 +1,20 @@
+@media screen and (max-width: 850px){
+    .ApiDataBlock{
+        margin-bottom: 1em;
+    }
+    .ApiDataBlock{
+        justify-content: space-around;
+    }
+    .ApiDataBlock .block:last-child,
+    .ApiDataBlock .line.last{display: none}
+}
+@media screen and (max-width: 500px){
+    .ApiDataBlock{
+        padding: .5em 2em;
+    }
+    .ApiDataBlock .block img{
+        width: 40px;
+    }
+    .ApiDataBlock .block.cent,
+    .ApiDataBlock .line{display: none}
+}

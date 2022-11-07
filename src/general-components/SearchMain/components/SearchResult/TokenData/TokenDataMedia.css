@@ -1,0 +1,23 @@
+@media screen and (max-width: 1200px){
+    .TokenData .block{
+        min-height: 120px;
+        padding: 1.2em 1.2em !important;
+        margin-top: .5em;
+    }
+}
+@media screen and (max-width: 800px) {
+    .TokenData .block{
+        min-height: 110px;
+    }
+}
+@media screen and (max-width: 550px) {
+    .TokenData{
+        flex-wrap: wrap;
+        margin-top: .1em;
+    }
+    .TokenData .block{
+        width: 100%;
+        margin-top: .5em;
+    }
+    .TokenData .block{min-height: 100px;}
+}
