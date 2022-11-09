@@ -1,7 +1,8 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import './ApiDataBlock.css';
 import './ApiDataBlockMedia.css';
 import {useApi} from "../../hooks/useApi";
+import axios from "axios";
 
 const ApiDataBlock = () => {
 
@@ -9,26 +10,46 @@ const ApiDataBlock = () => {
     const dataCoin = useApi('/coins/aidos-kuneen').data["market_data"];
     // console.log(dataCoin)
 
+    const [coinrangoData,setCoinrangoData] = useState('');
 
     //for market cap or volume
     const getSliceStr = (str,aftDot = 3) =>{
         return String(str).slice(0,String(str).indexOf('.')+aftDot)
     }
 
+    const rangIndOf = str => coinrangoData.indexOf(str)
+    //coin rango data
+    const currentPriceRangoUsd = coinrangoData.slice(rangIndOf(`[usd] => `) + `[usd] => `.length, rangIndOf(`[usd] => `) + `[usd] => `.length + 5);
+    const currentPriceRangoUsdPct = coinrangoData.slice(rangIndOf(`[usd_pct_24] => `) + `[usd_pct_24] => `.length, rangIndOf(`[usd_pct_24] => `) + `[usd_pct_24] => `.length + 5);
+    const currentRangoMkt = coinrangoData.slice(rangIndOf(`[marketcap] => `) + `[marketcap] => `.length, rangIndOf(`[marketcap] => `) + `[marketcap] => `.length + 15);
+    const currentRangoTTVal = coinrangoData.slice(rangIndOf(`[total_value] => `) + `[total_value] => `.length, rangIndOf(`[total_value] => `) + `[total_value] => `.length + 15);
+
+    useEffect(() =>{
+        axios.get("https://coinrango.com/api/public/crypto.php?symbols=ADK").then(res => setCoinrangoData(res.data))
+
+    },[dataCoin])
+
     if(dataCoin){
         return (
             <div className={'ApiDataBlock'}>
                 <div className="block">
-                    <img src="/images/general/logo-circle.svg" alt=""/>
+                    <img src="/images/general/circle-logo.png" alt="aidos kuneen"/>
                         <h4>
-                            ${getSliceStr(dataCoin["current_price"]["usd"],5)}
+                            {
+                                currentPriceRangoUsd ?
+                                    "$" + getSliceStr(currentPriceRangoUsd,5):
+                                    "-"
+                            }
                         </h4>
-                        <h6 className={getSliceStr(dataCoin["price_change_percentage_24h"]).startsWith("-")?"red":""}>
-                            (
-                                {getSliceStr(dataCoin["price_change_percentage_24h"]).startsWith("-")?'':'+'}
-                                {getSliceStr(dataCoin["price_change_percentage_24h"])}%
-                            )
-                        </h6>
+                        {
+                            currentPriceRangoUsdPct &&
+                            <h6 className={currentPriceRangoUsdPct.startsWith("-")?"red":""}>
+                                (
+                                {currentPriceRangoUsdPct.startsWith("-")?'':'+'}
+                                {getSliceStr(currentPriceRangoUsdPct)}%
+                                )
+                            </h6>
+                        }
                 </div>
 
                 <div className="line" />
@@ -37,9 +58,11 @@ const ApiDataBlock = () => {
                     <h5>
                         Market cap:
                         <strong>
-                            $
-                            {getSliceStr((dataCoin["market_cap"]["usd"])/1000000)}
-                            M USD
+                            {
+                                currentRangoMkt ?
+                                    "$" + getSliceStr(currentRangoMkt/1000000) + "M":
+                                    "-"
+                            }
                         </strong>
                     </h5>
                 </div>
@@ -50,9 +73,11 @@ const ApiDataBlock = () => {
                     <h5>
                         Volume:
                         <strong>
-                            $
-                            {getSliceStr((dataCoin["total_volume"]["usd"])/1000)}
-                            K USD
+                            {
+                                currentRangoTTVal ?
+                                    "$" + getSliceStr(currentRangoTTVal/1000000) + "M":
+                                    "-"
+                            }
                         </strong>
                     </h5>
                 </div>

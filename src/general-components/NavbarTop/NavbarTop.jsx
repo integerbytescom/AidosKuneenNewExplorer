@@ -20,7 +20,7 @@ const NavbarTop = () => {
         <>
             <Navbar className={'NavbarTop'}>
                 <div className="logo">
-                    <img src="/images/general/logo.svg" alt="Aidos"/>
+                    <img src="/images/general/logo-png.png" alt="Aidos"/>
                     <span>
                         <h5>Aidos Kuneen</h5>
                         <div>Explorer</div>
