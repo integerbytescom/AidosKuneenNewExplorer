@@ -23,6 +23,7 @@ const ApiDataBlock = () => {
     const currentPriceRangoUsdPct = coinrangoData.slice(rangIndOf(`[usd_pct_24] => `) + `[usd_pct_24] => `.length, rangIndOf(`[usd_pct_24] => `) + `[usd_pct_24] => `.length + 5);
     const currentRangoMkt = coinrangoData.slice(rangIndOf(`[marketcap] => `) + `[marketcap] => `.length, rangIndOf(`[marketcap] => `) + `[marketcap] => `.length + 15);
     const currentRangoTTVal = coinrangoData.slice(rangIndOf(`[total_value] => `) + `[total_value] => `.length, rangIndOf(`[total_value] => `) + `[total_value] => `.length + 15);
+    const currentPriceRangoBtc = coinrangoData.slice(rangIndOf(`[btc] => `) + `[btc] => `.length, rangIndOf(`[btc] => `) + `[btc] => `.length + 10);
 
     useEffect(() =>{
         axios.get("https://coinrango.com/api/public/crypto.php?symbols=ADK").then(res => setCoinrangoData(res.data))
@@ -34,22 +35,30 @@ const ApiDataBlock = () => {
             <div className={'ApiDataBlock'}>
                 <div className="block">
                     <img src="/images/general/circle-logo.png" alt="aidos kuneen"/>
-                        <h4>
+                    <div>
+                        <span className={"d-flex align-items-center"}>
+                            <h4>
+                                {
+                                    currentPriceRangoUsd ?
+                                        "$" + getSliceStr(currentPriceRangoUsd,5):
+                                        "-"
+                                }
+                            </h4>
                             {
-                                currentPriceRangoUsd ?
-                                    "$" + getSliceStr(currentPriceRangoUsd,5):
-                                    "-"
+                                currentPriceRangoUsdPct &&
+                                <h6 className={currentPriceRangoUsdPct.startsWith("-")?"red":""}>
+                                    (
+                                    {currentPriceRangoUsdPct.startsWith("-")?'':'+'}
+                                    {getSliceStr(currentPriceRangoUsdPct)}%
+                                    )
+                                </h6>
                             }
-                        </h4>
+                        </span>
                         {
-                            currentPriceRangoUsdPct &&
-                            <h6 className={currentPriceRangoUsdPct.startsWith("-")?"red":""}>
-                                (
-                                {currentPriceRangoUsdPct.startsWith("-")?'':'+'}
-                                {getSliceStr(currentPriceRangoUsdPct)}%
-                                )
-                            </h6>
+                            currentPriceRangoBtc &&
+                            <h6 className={"btc-text"}>{currentPriceRangoBtc} BTC</h6>
                         }
+                    </div>
                 </div>
 
                 <div className="line" />

@@ -6,6 +6,7 @@
     border-radius: .5em;
     display: flex;
     justify-content: space-between;
+    align-items: center;
 }
 
 /*block*/
@@ -33,6 +34,11 @@
 .ApiDataBlock .block h5 strong{
     color: var(--api-h5-strong);
     margin-left: .5em;
+}
+
+.ApiDataBlock .block h6.btc-text{
+    margin: 0 0 0 .7em;
+    color: var(--api-h5);
 }
 
 /*img*/

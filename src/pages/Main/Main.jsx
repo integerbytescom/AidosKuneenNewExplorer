@@ -14,9 +14,9 @@ const Main = () => {
     const [transAll,setTransAll] = useState([]);
     const [transAllTokens,setTransAllTokens] = useState([]);
     const [oldAccounts,setOldAccounts] = useState([]);
-    console.log(transAll,'transAll');
-    console.log(transAllTokens,'transAllTokens');
-    console.log(oldAccounts,'oldAccounts');
+    // console.log(transAll,'transAll');
+    // console.log(transAllTokens,'transAllTokens');
+    // console.log(oldAccounts,'oldAccounts');
 
     //search
     const [searchFocus,setSearchFocus] = useState(false);
