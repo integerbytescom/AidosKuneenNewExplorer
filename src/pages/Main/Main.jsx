@@ -14,6 +14,9 @@ const Main = () => {
     const [transAll,setTransAll] = useState([]);
     const [transAllTokens,setTransAllTokens] = useState([]);
     const [oldAccounts,setOldAccounts] = useState([]);
+
+    const [transAllNoLimit,setTransAllNoLimits] = useState([]);
+
     // console.log(transAll,'transAll');
     // console.log(transAllTokens,'transAllTokens');
     // console.log(oldAccounts,'oldAccounts');
@@ -26,11 +29,17 @@ const Main = () => {
 
     useEffect(() => {
         //get all transactions from mysql
-        axios.get('https://explorer.aidoskuneen.com/back/?module=transactionsAgsAll').then(result => setTransAll([...result.data]));
+        axios.get('https://explorer.aidoskuneen.com/back/?module=transactionsAgsAll&limit=100')
+            .then(result => setTransAll([...result.data]));
         //token transactions from mysql
-        axios.get('https://explorer.aidoskuneen.com/back/?module=transactionsTokensAll').then(result => setTransAllTokens([...result.data]));
+        axios.get('https://explorer.aidoskuneen.com/back/?module=transactionsTokensAll')
+            .then(result => setTransAllTokens([...result.data]));
         //old data about accounts from mysql
-        axios.get('https://explorer.aidoskuneen.com/back/?module=accountsOldAll').then(result => setOldAccounts([...result.data]));
+        axios.get('https://explorer.aidoskuneen.com/back/?module=accountsOldAll')
+            .then(result => setOldAccounts([...result.data]));
+
+        axios.get('https://explorer.aidoskuneen.com/back/?module=transactionsAgsAll')
+            .then(result => setTransAllNoLimits([...result.data]));
 
         //queries from https://blockscout.com
         // axios.get(`https://blockscout.com/eth/mainnet/api?module=account&action=txlist&address=0x888888881f8af02398dc3fee2a243b66356717f8`).then(res => console.log(res));
@@ -70,7 +79,7 @@ const Main = () => {
                             // with sort for search
                             <Transactions
                                 sort={true}
-                                transAll={transAll.filter(trans => (trans['txto']===query || trans['txfrom']===query))}
+                                transAll={(transAllNoLimit.length ? transAllNoLimit : transAll).filter(trans => (trans['txto']===query || trans['txfrom']===query))}
                                 transAllTokens={transAllTokens.filter(trans => (trans['txto']===query || trans['txfrom']===query))}
                                 oldAccounts={oldAccounts.filter(acc => (acc['AZ9Address']===query || acc['az9_hash']===query))}
                                 showAllTrans={showAllTrans}
@@ -79,7 +88,7 @@ const Main = () => {
                             // without sort for search (show all results)
                             <Transactions
                                 sort={false}
-                                transAll={transAll}
+                                transAll={(transAllNoLimit.length ? transAllNoLimit : transAll)}
                                 transAllTokens={transAllTokens}
                                 showAllTrans={showAllTrans}
                                 setShowAllTrans={setShowAllTrans}
