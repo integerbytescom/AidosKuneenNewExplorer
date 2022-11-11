@@ -8,7 +8,7 @@ import PaginateItemMore from "./components/PaginateItemMore/PaginateItemMore";
 import {Alert, Spinner} from "react-bootstrap";
 import AccountsItem from "./components/AccountsItem";
 
-const Transactions = ({showAllTrans,setShowAllTrans,transAll,transAllTokens,oldAccounts,sort}) => {
+const Transactions = ({showAllTrans,setShowAllTrans,transAll,transAllTokens,oldAccounts,sort,setQuery,setSearchFocus}) => {
 
     const [activeTrans,setActiveTrans] = useState(1);
 
@@ -136,6 +136,8 @@ const Transactions = ({showAllTrans,setShowAllTrans,transAll,transAllTokens,oldA
                     data={dataModal}
                     show={modalShow}
                     onHide={() => setModalShow(false)}
+                    setSearchFocus={setSearchFocus}
+                    setQuery={setQuery}
                 />
             </div>
 

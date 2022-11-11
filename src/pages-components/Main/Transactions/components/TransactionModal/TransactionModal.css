@@ -66,6 +66,13 @@
     width: 65%;
 }
 
+/*для элементов которые можно перевести в поиск*/
+.modal-body .copy:hover{
+    transition: .3s;
+    cursor: pointer;
+    opacity: .7;
+}
+
 /*modal media*/
 @media screen and (max-width: 800px){
     .modal-header{

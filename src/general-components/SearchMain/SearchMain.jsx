@@ -4,9 +4,10 @@ import './SearchMainMedia.css';
 import SearchResult from "./components/SearchResult/SearchResult";
 import {useWeb3React} from "@web3-react/core";
 import {web3} from "../../constants/web3";
+import axios from "axios";
 
 
-const SearchMain = ({query,setQuery,searchFocus,setSearchFocus,oldAccounts}) => {
+const SearchMain = ({query,setQuery,searchFocus,setSearchFocus,oldAccounts,mysqlSearch,setMysqlSearch}) => {
 
 
     const {
@@ -53,8 +54,16 @@ const SearchMain = ({query,setQuery,searchFocus,setSearchFocus,oldAccounts}) => 
 
     useEffect(() => {
         handleSearch(query)
+
+        //mysql search get data
+        axios.get(`https://explorer.aidoskuneen.com/back/?module=search&query=${query}`)
+            .then(result => setMysqlSearch([...result.data]));
+
+        console.log(mysqlSearch,'mysqlSearch data')
+
         //eslint-disable-next-line
     },[query])
+
 
     return (
         <>

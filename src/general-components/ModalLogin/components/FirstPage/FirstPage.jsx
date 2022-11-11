@@ -34,14 +34,14 @@ const FirstPage = ({setShowPage,connect,disconnect,active,addADKNetworkAUTO,chai
                 <p>Connect Metamask</p>
             </div>
             <button onClick={connect} className={'right-mod-but'}>
-                {active? <img src="/images/general/success.svg" alt="success"/>:''}
+                {active && <img src="/images/general/success.svg" alt="success"/>}
                 Connect
             </button>
             {   //disconnect button
-                active?
+                active &&
                     <button className={'right-mod-but'} onClick={disconnect}>
                         Disconnect
-                    </button>:''
+                    </button>
             }
 
             <div className="circle-text mt-5">
@@ -58,8 +58,8 @@ const FirstPage = ({setShowPage,connect,disconnect,active,addADKNetworkAUTO,chai
             </div>
 
             <button onClick={addADKNetworkAUTO} className={'right-mod-but aid'}>
-                {chainId === 40272? <img src="/images/general/success.svg" alt="success"/>:''}
-                <img src="/images/modal-login/logo-white.svg" alt="aidos"/>
+                {chainId === 40272 && <img src="/images/general/success.svg" alt="success"/>}
+                <img src="/images/modal-login/logo-white-png.png" alt="aidos"/>
                 Aidos Kuneen
             </button>
 

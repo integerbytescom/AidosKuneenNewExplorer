@@ -6,7 +6,7 @@ import {Alert, Spinner} from "react-bootstrap";
 
 const SearchResult = ({searchRes,query,tokensData}) => {
 
-    // console.log(searchRes);
+    console.log(searchRes);
 
     return (
         <div

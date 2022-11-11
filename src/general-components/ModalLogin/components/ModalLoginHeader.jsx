@@ -14,17 +14,17 @@ const ModalLoginHeader = ({chainId,active,account}) => {
         <>
             <header>
                 {
-                    chainId === 40272?
+                    chainId === 40272 &&
                         <div className="block">
                             <img src="/images/general/globe.svg" alt="globe"/>
                             <span>
                                         <h6>Connect to</h6>
                                         <p className={'small'}>Aidos Network</p>
                                     </span>
-                        </div>:''
+                        </div>
                 }
                 {
-                    active?
+                    active &&
                         <div className="block acc">
                             <p className={'small'}>
                                 {account ?
@@ -38,7 +38,7 @@ const ModalLoginHeader = ({chainId,active,account}) => {
                                  src="/images/general/copy.svg"
                                  alt="copy"
                             />
-                        </div>:''
+                        </div>
                 }
             </header>
             </>

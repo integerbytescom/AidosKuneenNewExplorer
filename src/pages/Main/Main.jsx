@@ -15,6 +15,9 @@ const Main = () => {
     const [transAllTokens,setTransAllTokens] = useState([]);
     const [oldAccounts,setOldAccounts] = useState([]);
 
+    //data from mysql search
+    const [mysqlSearch,setMysqlSearch] = useState([]);
+
     const [transAllNoLimit,setTransAllNoLimits] = useState([]);
 
     // console.log(transAll,'transAll');
@@ -28,7 +31,7 @@ const Main = () => {
     // 0x888888881f8af02398dc3fee2a243b66356717f8
 
     useEffect(() => {
-        //get all transactions from mysql
+        //get all transactions from mysql with limit
         axios.get('https://explorer.aidoskuneen.com/back/?module=transactionsAgsAll&limit=100')
             .then(result => setTransAll([...result.data]));
         //token transactions from mysql
@@ -37,7 +40,7 @@ const Main = () => {
         //old data about accounts from mysql
         axios.get('https://explorer.aidoskuneen.com/back/?module=accountsOldAll')
             .then(result => setOldAccounts([...result.data]));
-
+        //get all transactions from mysql without limit
         axios.get('https://explorer.aidoskuneen.com/back/?module=transactionsAgsAll')
             .then(result => setTransAllNoLimits([...result.data]));
 
@@ -67,6 +70,8 @@ const Main = () => {
                     setSearchFocus={setSearchFocus}
                     // old accounts res with filter with queris on search
                     oldAccounts={oldAccounts.filter(acc => (acc['AZ9Address']===query || acc['az9_hash']===query))}
+                    mysqlSearch={mysqlSearch}
+                    setMysqlSearch={setMysqlSearch}
                 />
                 {!(query && searchFocus) && <ApiDataBlock />}
             </div>
@@ -84,6 +89,9 @@ const Main = () => {
                                 oldAccounts={oldAccounts.filter(acc => (acc['AZ9Address']===query || acc['az9_hash']===query))}
                                 showAllTrans={showAllTrans}
                                 setShowAllTrans={setShowAllTrans}
+                                setQuery={setQuery}
+                                setSearchFocus={setSearchFocus}
+
                             />:
                             // without sort for search (show all results)
                             <Transactions
@@ -93,6 +101,8 @@ const Main = () => {
                                 showAllTrans={showAllTrans}
                                 setShowAllTrans={setShowAllTrans}
                                 oldAccounts={oldAccounts.sort((a, b) => b['balance'] - a['balance'])}
+                                setQuery={setQuery}
+                                setSearchFocus={setSearchFocus}
                             />
                     )
                 }

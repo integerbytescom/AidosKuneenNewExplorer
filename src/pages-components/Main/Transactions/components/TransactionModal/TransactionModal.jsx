@@ -4,9 +4,16 @@ import './TransactionModal.css';
 import {getStrAfterDot} from "../../../../../functions/getStrAfterDot";
 
 
-const TransactionModal = ({data,show,onHide}) => {
+const TransactionModal = ({data,show,onHide,setQuery,setSearchFocus}) => {
 
     // console.log(data,'TransactionModal');
+
+    //get in search
+    const handleSearch = value =>{
+        onHide();
+        setQuery(value);
+        setSearchFocus(true);
+    }
 
     return (
         <Modal
@@ -39,7 +46,9 @@ const TransactionModal = ({data,show,onHide}) => {
                 <div className="block">
                     <div className="inner">
                         <p className="left">Transaction Hash:</p>
-                        <p className="right">{data['transactionhash']}</p>
+                        <p className="right copy" onClick={() => handleSearch(data['transactionhash'])}>
+                            {data['transactionhash']}
+                        </p>
                     </div>
                     <div className="inner">
                         <p className="left">Timestamp:</p>
@@ -53,11 +62,15 @@ const TransactionModal = ({data,show,onHide}) => {
                 <div className="block">
                     <div className="inner">
                         <p className="left">From:</p>
-                        <p className="right">{data['txfrom']}</p>
+                        <p className="right copy" onClick={() => handleSearch(data['txfrom'])}>
+                            {data['txfrom']}
+                        </p>
                     </div>
                     <div className="inner">
                         <p className="left">To:</p>
-                        <p className="right">{data['txto']}</p>
+                        <p className="right copy" onClick={() => handleSearch(data['txto'])}>
+                            {data['txto']}
+                        </p>
                     </div>
                 </div>
                 <div className="block">
