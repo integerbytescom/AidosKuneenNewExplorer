@@ -34,6 +34,8 @@ const SearchMain = ({query,setQuery,searchFocus,setSearchFocus,oldAccounts,mysql
 
     const [searchRes,setSearchRes] = useState([]);
 
+    const [queryTable,setQueryTable] = useState('');
+
     const handleSearch = value => {
         if(value.length === 42){
             web3.eth.getBalance(value).then(res => setSearchRes(['address',{address:value,balance:res}]))
@@ -41,6 +43,17 @@ const SearchMain = ({query,setQuery,searchFocus,setSearchFocus,oldAccounts,mysql
             web3.eth.getTransaction(value).then(res => setSearchRes(['transaction', res]))
         }else if(value.length === 90){
             setSearchRes(['oldAccounts', oldAccounts[0]])
+        }
+        else return false
+    }
+
+    const handleSearchMySql = value => {
+        if(value.length === 42){
+            setQueryTable('address')
+        }else if(value.length === 66){
+            setQueryTable('txHash')
+        }else if(value.length === 90){
+            setQueryTable('oldAddress')
         }
         else return false
     }
@@ -53,16 +66,16 @@ const SearchMain = ({query,setQuery,searchFocus,setSearchFocus,oldAccounts,mysql
     }
 
     useEffect(() => {
-        handleSearch(query)
-
         //mysql search get data
-        axios.get(`https://explorer.aidoskuneen.com/back/?module=search&query=${query}`)
-            .then(result => setMysqlSearch([...result.data]));
+        if (queryTable && query){
+            axios.get(`https://explorer.aidoskuneen.com/index.php?module=${queryTable}&query=${query}`)
+                .then(result => setMysqlSearch([...result.data]));
+        }
 
         console.log(mysqlSearch,'mysqlSearch data')
 
         //eslint-disable-next-line
-    },[query])
+    },[query,queryTable])
 
 
     return (

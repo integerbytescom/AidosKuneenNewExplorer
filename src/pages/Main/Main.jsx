@@ -32,17 +32,17 @@ const Main = () => {
 
     useEffect(() => {
         //get all transactions from mysql with limit
-        axios.get('https://explorer.aidoskuneen.com/back/?module=transactionsAgsAll&limit=100')
-            .then(result => setTransAll([...result.data]));
+        // axios.get('https://explorer.aidoskuneen.com/back/?module=transactionsAgsAll&limit=100')
+        //     .then(result => setTransAll([...result.data]));
         //token transactions from mysql
-        axios.get('https://explorer.aidoskuneen.com/back/?module=transactionsTokensAll')
-            .then(result => setTransAllTokens([...result.data]));
+        // axios.get('https://explorer.aidoskuneen.com/back/?module=transactionsTokensAll')
+        //     .then(result => setTransAllTokens([...result.data]));
         //old data about accounts from mysql
-        axios.get('https://explorer.aidoskuneen.com/back/?module=accountsOldAll')
-            .then(result => setOldAccounts([...result.data]));
+        // axios.get('https://explorer.aidoskuneen.com/back/?module=accountsOldAll')
+        //     .then(result => setOldAccounts([...result.data]));
         //get all transactions from mysql without limit
-        axios.get('https://explorer.aidoskuneen.com/back/?module=transactionsAgsAll')
-            .then(result => setTransAllNoLimits([...result.data]));
+        // axios.get('https://explorer.aidoskuneen.com/back/?module=transactionsAgsAll')
+        //     .then(result => setTransAllNoLimits([...result.data]));
 
         //queries from https://blockscout.com
         // axios.get(`https://blockscout.com/eth/mainnet/api?module=account&action=txlist&address=0x888888881f8af02398dc3fee2a243b66356717f8`).then(res => console.log(res));
