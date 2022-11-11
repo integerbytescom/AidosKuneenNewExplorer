@@ -49,11 +49,7 @@ const SearchMain = ({query,setQuery,searchFocus,setSearchFocus,oldAccounts,mysql
 
     const handleSearchMySql = value => {
         if(value.length === 42){
-            setQueryTable('address')
-        }else if(value.length === 66){
-            setQueryTable('txHash')
-        }else if(value.length === 90){
-            setQueryTable('oldAddress')
+            setQueryTable('transactionsAgsAll')
         }
         else return false
     }
@@ -67,7 +63,7 @@ const SearchMain = ({query,setQuery,searchFocus,setSearchFocus,oldAccounts,mysql
 
     useEffect(() => {
         //mysql search get data
-        if (queryTable && query){
+        if (handleSearchMySql(query) && queryTable && query){
             axios.get(`https://explorer.aidoskuneen.com/index.php?module=${queryTable}&query=${query}`)
                 .then(result => setMysqlSearch([...result.data]));
         }
