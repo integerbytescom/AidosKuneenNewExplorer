@@ -31,17 +31,17 @@ const Main = () => {
     // 0x888888881f8af02398dc3fee2a243b66356717f8
 
     useEffect(() => {
-        //get all transactions from mysql with limit
-        // axios.get('https://explorer.aidoskuneen.com/back/?module=transactionsAgsAll&limit=100')
+        // get all transactions from mysql with limit
+        // axios.get('/back/?module=transactionsAgsAll&limit=100')
         //     .then(result => setTransAll([...result.data]));
-        //token transactions from mysql
-        // axios.get('https://explorer.aidoskuneen.com/back/?module=transactionsTokensAll')
+        // token transactions from mysql
+        // axios.get('/back/?module=transactionsTokensAll')
         //     .then(result => setTransAllTokens([...result.data]));
-        //old data about accounts from mysql
-        // axios.get('https://explorer.aidoskuneen.com/back/?module=accountsOldAll')
+        // old data about accounts from mysql
+        // axios.get('/back/?module=accountsOldAll')
         //     .then(result => setOldAccounts([...result.data]));
-        //get all transactions from mysql without limit
-        // axios.get('https://explorer.aidoskuneen.com/back/?module=transactionsAgsAll')
+        // get all transactions from mysql without limit
+        // axios.get('/back/?module=transactionsAgsAll')
         //     .then(result => setTransAllNoLimits([...result.data]));
 
         //queries from https://blockscout.com

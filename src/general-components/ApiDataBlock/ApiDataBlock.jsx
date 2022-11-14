@@ -1,36 +1,23 @@
 import React, {useEffect, useState} from 'react';
 import './ApiDataBlock.css';
 import './ApiDataBlockMedia.css';
-import {useApi} from "../../hooks/useApi";
 import axios from "axios";
 
 const ApiDataBlock = () => {
 
-    //api data
-    const dataCoin = useApi('/coins/aidos-kuneen').data["market_data"];
-    // console.log(dataCoin)
-
-    const [coinrangoData,setCoinrangoData] = useState('');
+    const [data,setData] = useState({});
+    console.log(data,'coinrangoData')
 
     //for market cap or volume
     const getSliceStr = (str,aftDot = 3) =>{
         return String(str).slice(0,String(str).indexOf('.')+aftDot)
     }
 
-    const rangIndOf = str => coinrangoData.indexOf(str)
-    //coin rango data
-    const currentPriceRangoUsd = coinrangoData.slice(rangIndOf(`[usd] => `) + `[usd] => `.length, rangIndOf(`[usd] => `) + `[usd] => `.length + 5);
-    const currentPriceRangoUsdPct = coinrangoData.slice(rangIndOf(`[usd_pct_24] => `) + `[usd_pct_24] => `.length, rangIndOf(`[usd_pct_24] => `) + `[usd_pct_24] => `.length + 5);
-    const currentRangoMkt = coinrangoData.slice(rangIndOf(`[marketcap] => `) + `[marketcap] => `.length, rangIndOf(`[marketcap] => `) + `[marketcap] => `.length + 15);
-    const currentRangoTTVal = coinrangoData.slice(rangIndOf(`[total_value] => `) + `[total_value] => `.length, rangIndOf(`[total_value] => `) + `[total_value] => `.length + 15);
-    const currentPriceRangoBtc = coinrangoData.slice(rangIndOf(`[btc] => `) + `[btc] => `.length, rangIndOf(`[btc] => `) + `[btc] => `.length + 10);
-
     useEffect(() =>{
-        axios.get("https://coinrango.com/api/public/crypto.php?symbols=ADK").then(res => setCoinrangoData(res.data))
+        axios.get("https://coinrango.com/api/public/crypto.php?symbols=ADK").then(res => setData(res.data[0]['market']))
+    },[])
 
-    },[dataCoin])
-
-    if(dataCoin){
+    if(Object.values(data).length){
         return (
             <div className={'ApiDataBlock'}>
                 <div className="block">
@@ -39,24 +26,24 @@ const ApiDataBlock = () => {
                         <span className={"d-flex align-items-center"}>
                             <h4>
                                 {
-                                    currentPriceRangoUsd ?
-                                        "$" + getSliceStr(currentPriceRangoUsd,5):
+                                    data['usd'] ?
+                                        "$" + getSliceStr(data['usd'],3):
                                         "-"
                                 }
                             </h4>
                             {
-                                currentPriceRangoUsdPct &&
-                                <h6 className={currentPriceRangoUsdPct.startsWith("-")?"red":""}>
+                                data['usd_pct_24'] &&
+                                <h6 className={data['usd_pct_24'].startsWith("-")?"red":""}>
                                     (
-                                    {currentPriceRangoUsdPct.startsWith("-")?'':'+'}
-                                    {getSliceStr(currentPriceRangoUsdPct)}%
+                                    {data['usd_pct_24'].startsWith("-")?'':'+'}
+                                    {getSliceStr(data['usd_pct_24'])}% 24h
                                     )
                                 </h6>
                             }
                         </span>
                         {
-                            currentPriceRangoBtc &&
-                            <h6 className={"btc-text"}>{currentPriceRangoBtc} BTC</h6>
+                            data['btc'] &&
+                            <h6 className={"btc-text"}>{data['btc']} BTC</h6>
                         }
                     </div>
                 </div>
@@ -68,8 +55,8 @@ const ApiDataBlock = () => {
                         Market cap:
                         <strong>
                             {
-                                currentRangoMkt ?
-                                    "$" + getSliceStr(currentRangoMkt/1000000) + "M":
+                                data['marketcap'] ?
+                                    "$" + getSliceStr(data['marketcap']/1000000) + "M":
                                     "-"
                             }
                         </strong>
@@ -83,8 +70,8 @@ const ApiDataBlock = () => {
                         Volume:
                         <strong>
                             {
-                                currentRangoTTVal ?
-                                    "$" + getSliceStr(currentRangoTTVal/1000000) + "M":
+                                data['total_value'] ?
+                                    "$" + getSliceStr(data['total_value']/1000000) + "M":
                                     "-"
                             }
                         </strong>
