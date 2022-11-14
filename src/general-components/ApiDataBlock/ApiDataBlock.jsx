@@ -6,7 +6,7 @@ import axios from "axios";
 const ApiDataBlock = () => {
 
     const [data,setData] = useState({});
-    console.log(data,'coinrangoData')
+    // console.log(data,'coinrangoData');
 
     //for market cap or volume
     const getSliceStr = (str,aftDot = 3) =>{

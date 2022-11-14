@@ -1,12 +1,12 @@
 import React from 'react';
 import MainData from "./MainData/MainData";
 import TokenData from "./TokenData/TokenData";
-import {Alert, Spinner} from "react-bootstrap";
+import {Alert} from "react-bootstrap";
 
 
 const SearchResult = ({searchRes,query,tokensData}) => {
 
-    console.log(searchRes);
+    // console.log(searchRes);
 
     return (
         <div
@@ -21,23 +21,21 @@ const SearchResult = ({searchRes,query,tokensData}) => {
             }
 
             {
-                searchRes[1]?
+                (searchRes[1])?
                     <>
                         <MainData query={query} searchRes={searchRes} />
                         <TokenData query={query} searchRes={searchRes} tokensData={tokensData} />
                     </>:
-                        !window.ethereum ?
-                            <Alert variant={"danger"} className={"small p-2"}>
-                                You need install Metamask extension!
-                            </Alert>:
-                            <Alert
-                                className={'small p-2 opacity-75s d-flex justify-content-between align-items-center'}
-                                variant={"success"}
-                            >
-                                Enter the correct query and the data will be displayed here.
-                                Txid must contain 66 chars, the address 42 chars, AZ9 address 90 chars.
-                                <Spinner animation={'border'} variant={"success"} size={"sm"} />
-                            </Alert>
+                    <Alert
+                        className={"small p-2 opacity-75s text-center"}
+                        variant={"primary"}
+                    >
+                        {
+                            query.length?
+                                'No results found for this query.':
+                                'Enter a request. The request must contain 42, 66 or 90 characters.'
+                        }
+                    </Alert>
             }
         </div>
     );

@@ -23,7 +23,7 @@ const MainData = ({searchRes,query}) => {
                         <img src="/images/search/edit.svg" alt=""/>
                         <h5>
                             {searchRes[0]==='address' && 'Address'}
-                            {searchRes[0]==='transaction' && 'From'}
+                            {searchRes[0]==='hash' && 'From'}
                             {searchRes[0]==='oldAccounts' && 'AZ9 Address'}
                         </h5>
                     </div>
@@ -31,7 +31,7 @@ const MainData = ({searchRes,query}) => {
                 <footer>
                     <p>
                         {searchRes[0] === 'address' && searchRes[1].address}
-                        {searchRes[0] === 'transaction' && getStrCenterDot(searchRes[1].from)}
+                        {searchRes[0] === 'hash' && getStrCenterDot(searchRes[1]['txfrom'])}
                         {
                             searchRes[0] === 'oldAccounts' &&
                             getStrCenterDot(searchRes[1]['AZ9Address'])
@@ -46,7 +46,7 @@ const MainData = ({searchRes,query}) => {
                         <img src="/images/search/credit-card.svg" alt=""/>
                         <h5>
                             {searchRes[0]==='address' && 'Total Balance'}
-                            {searchRes[0]==='transaction' && 'To'}
+                            {searchRes[0]==='hash' && 'To'}
                             {searchRes[0]==='oldAccounts' && 'AZ9 Hash'}
                         </h5>
                     </div>
@@ -54,7 +54,7 @@ const MainData = ({searchRes,query}) => {
                 <footer className={"right"}>
                     <h5>
                         {searchRes[0] === 'address' && searchRes[1].balance + ' units'}
-                        {searchRes[0] === 'transaction' && 'Sended: ' + searchRes[1].value/Math.pow(10,18) + ' ADK'}
+                        {searchRes[0] === 'hash' && 'Sended: ' + searchRes[1]['value']/Math.pow(10,18) + ' ADK'}
                         {searchRes[0] === 'oldAccounts' && (searchRes[1]['az9_hash']).slice(0,30) + '...'}
                     </h5>
                     {
@@ -63,9 +63,9 @@ const MainData = ({searchRes,query}) => {
                     }
 
                     {
-                        searchRes[0] === 'transaction' &&
+                        searchRes[0] === 'hash' &&
                         <p style={{color:'white',fontWeight:400,textAlign:"right"}}>
-                            {getStrCenterDot(searchRes[1].to)}
+                            {getStrCenterDot(searchRes[1]['txto'])}
                         </p>
                     }
                 </footer>
