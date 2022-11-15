@@ -92,7 +92,7 @@ const Transactions = ({showAllTrans,setShowAllTrans,transAll,transAllTokens,oldA
                     (showAllTrans && activeTrans!==3) &&
                     <div className={'header-show-table'}>
                         <p className={'small'}>TXID ID</p>
-                        <p className={'small'}>Data</p>
+                        <p className={'small'}>Date</p>
                         <p className={'small'}>Status</p>
                         <p className={'small'}>Block</p>
                         <p className={'small'}>From To</p>
