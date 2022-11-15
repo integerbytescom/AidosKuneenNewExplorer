@@ -2,8 +2,8 @@ import Web3 from "web3";
 
 // const rpcURL = 'http://162.55.164.222:9545';
 // export const web3 = new Web3(new Web3.providers.HttpProvider(rpcURL));
-export let web3 = new Web3();
-web3.setProvider(new web3.providers.HttpProvider('https://api1.mainnet.aidoskuneen.com:9443'));
+export let web3 = new Web3('https://api1.mainnet.aidoskuneen.com:9443');
+// web3.setProvider(new web3.providers.HttpProvider('https://api1.mainnet.aidoskuneen.com:9443'));
 
 //now work in firefox
 // export const web3 = new Web3('ws://remotenode.com:8546');
