@@ -24,7 +24,7 @@ const AccountsItem = ({data}) => {
                 </span>
 
                 <span>
-                    <p><span>Block: </span>{data['block']===-1?'-':data['block']}</p>
+                    <p><span>Block: </span>{Number(data['block']) === -1 ? '-' : data['block']}</p>
                     <p><span>Claimed: </span>{data['claimed']}</p>
                 </span>
 

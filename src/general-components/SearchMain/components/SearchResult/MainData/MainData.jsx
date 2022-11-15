@@ -1,7 +1,8 @@
-import React, {useEffect} from 'react';
+import React, {useEffect, useState} from 'react';
 import './MainData.css';
 import './MainDataMedia.css';
 import {getStrAfterDot} from "../../../../../functions/getStrAfterDot";
+import {web3} from "../../../../../constants/web3";
 
 const MainData = ({searchRes,query}) => {
 
@@ -12,7 +13,20 @@ const MainData = ({searchRes,query}) => {
         return str.slice(0,15) + '...' + str.slice(str.length - 15,str.length)
     }
 
-    useEffect(() => {},[searchRes,query])
+
+    const [balance,setBalance] = useState(0)
+    const getBalance = () => {
+        if (searchRes[0] === 'address' && searchRes[1].address){
+            //get balance and write in state
+            web3.eth.getBalance(searchRes[1].address)
+                .then(res => setBalance(Number(res)));
+        }
+    }
+
+    useEffect(() => {
+        getBalance()
+        //eslint-disable-next-line
+    },[searchRes,query])
 
     return (
         <div className={'MainData'}>
@@ -53,13 +67,13 @@ const MainData = ({searchRes,query}) => {
                 </header>
                 <footer className={"right"}>
                     <h5>
-                        {searchRes[0] === 'address' && searchRes[1].balance + ' units'}
+                        {searchRes[0] === 'address' && balance + ' units'}
                         {searchRes[0] === 'hash' && 'Sended: ' + searchRes[1]['value']/Math.pow(10,18) + ' ADK'}
                         {searchRes[0] === 'oldAccounts' && (searchRes[1]['az9_hash']).slice(0,30) + '...'}
                     </h5>
                     {
                         searchRes[0] === 'address' &&
-                            <h4>{(searchRes[1] && getStrAfterDot(searchRes[1].balance/Math.pow(10,18))) + ' ADK'}</h4>
+                            <h4>{(searchRes[1] && getStrAfterDot(balance/Math.pow(10,18))) + ' ADK'}</h4>
                     }
 
                     {

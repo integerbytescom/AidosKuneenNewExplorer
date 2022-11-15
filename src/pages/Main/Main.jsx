@@ -31,16 +31,16 @@ const Main = () => {
 
     useEffect(() => {
         // get all transactions from mysql with limit
-        axios.get('https://explorer.aidoskuneen.com//back.php?module=transactionsAgsAll&limit=100')
+        axios.get('https://explorer.aidoskuneen.com/back.php?module=transactionsAgsAll&limit=100')
             .then(result => setTransAll([...result.data]));
         // token transactions from mysql
-        axios.get('https://explorer.aidoskuneen.com//back.php?module=transactionsTokensAll')
+        axios.get('https://explorer.aidoskuneen.com/back.php?module=transactionsTokensAll')
             .then(result => setTransAllTokens([...result.data]));
         // old data about accounts from mysql
-        axios.get('https://explorer.aidoskuneen.com//back.php?module=accountsOldAll')
+        axios.get('https://explorer.aidoskuneen.com/back.php?module=accountsOldAll')
             .then(result => setOldAccounts([...result.data]));
         // get all transactions from mysql without limit
-        axios.get('https://explorer.aidoskuneen.com//back.php?module=transactionsAgsAll')
+        axios.get('https://explorer.aidoskuneen.com/back.php?module=transactionsAgsAll')
             .then(result => setTransAllNoLimits([...result.data]));
     },[])
 

@@ -35,7 +35,7 @@ const SearchMain = ({query,setQuery,searchFocus,setSearchFocus,oldAccounts,mysql
     useEffect(() => {
         //mysql search get data
         if (handleSearchMySql(query) && queryTable && query){
-            axios.get(`https://explorer.aidoskuneen.com//back.php?module=${queryTable}&${queryTable}=${query}`)
+            axios.get(`https://explorer.aidoskuneen.com/back.php?module=${queryTable}&${queryTable}=${query}`)
                 .then(result => setMysqlSearch([queryTable,...result.data]));
         }
 
